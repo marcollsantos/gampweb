@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 
 
 // ✅ Define as constantes ANTES de incluir os módulos
-define('SERVER_API', "http://" . $_SERVER['SERVER_NAME'] . ":3001");
+define('SERVER_API', "http://" . $_SERVER['SERVER_NAME'] . ":9001");
 define('SERVER_NEW_INTRA', "http://" . $_SERVER['SERVER_NAME'] . "8080");
 define('SERVER_OLD_INTRA', "http://" . $_SERVER['SERVER_NAME']);
 
@@ -45,12 +45,6 @@ echo "<p>✅ módulo_usuarios.php incluído com sucesso.</p>";
 
 	<link rel="stylesheet" type="text/css" href="intra/css/estilo.css">
 
-	<!--[if IE]>
-
-		<link rel="stylesheet" type="text/css" href="intra/css/estilo-ie.css" />
-
-	<![endif]-->
-
 	<script src="./intra/js/jquery-2.1.3.min.js"> </script>
 
 	<link rel="stylesheet" href="./intra/bootstrap-4.3.1/dist/css/bootstrap.min.css">
@@ -69,57 +63,14 @@ echo "<p>✅ módulo_usuarios.php incluído com sucesso.</p>";
 
 
 
-			<!--<div class="modal fade" id="id-modal" tabindex="-1" role="dialog" aria-labelledby="id-modal" aria-hidden="true">
-
-				<div class="modal-dialog modal-lg" role="document">
-
-					<div class="modal-content">
-
-						<div class="modal-header color-info">
-
-							<h5 class="modal-title" id="exampleModalLongTitle">Relatório Atividade Cipa/HPSC</h5>
-
-							<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
-
-								<span aria-hidden="true">&times;</span>
-
-							</button>
-
-						</div>
-
-						<div class="modal-body text-center">
-
-							<img src="./intra/images/pos-sipat.jpg" alt="relatorio-atividades-cipa" style=" width: 48em; height: 34em" />
-
-						</div>
-
-						<div class="modal-footer color-info">
-
-							<button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Fechar</button>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>-->
-
-
-
 			<div id="area">	
 
 				<div id="logo">
 
-					<a href="">
-
-						<img src="intra/images/logo-canoas.png">
-
-					</a>
 
 					<a href="http://portal:9006/">
 
-						<img src="intra/images/logo2017.png">
+						<img src="intra/images/HUASMLogo.png">
 
 					</a>
 
@@ -252,6 +203,20 @@ echo "<p>✅ módulo_usuarios.php incluído com sucesso.</p>";
 
 		<div id="area-principal">
 
+		<?php
+			include 'conexao.php';
+			$result = $conn->query("SELECT * FROM links");
+
+			while ($row = $result->fetch_assoc()) {
+  				echo '<div class="link-card">';
+  				echo '<img src="' . $row['imagem'] . '" alt="' . $row['titulo'] . '" style="width:100px;">';
+  				echo '<h3>' . $row['titulo'] . '</h3>';
+  				echo '<a href="' . $row['url'] . '" target="_blank">Acessar</a>';
+  				echo '</div>';
+			}
+			?>
+
+
 			<?php 
 
 			//Include abaixo serve para adicionar avisos à Intranet
@@ -351,11 +316,11 @@ echo "<p>✅ módulo_usuarios.php incluído com sucesso.</p>";
 
         <h2 style="color: #006699;">Olá, seja bem-vindo! 👋</h2>
 
-        <p style="font-size: 1.2em;">Aqui você acessa os recursos da rede GAMP em Canoas.</p>
+        <p style="font-size: 1.2em;">Aqui você acessa os recursos da rede ASM em Canoas.</p>
 
 
 
-        <a href="https://www.canoas.rs.gov.br/" target="_blank" style="display: inline-block; margin: 20px 0;">
+        <a href="https://www.asaudem.org/home/" target="_blank" style="display: inline-block; margin: 20px 0;">
 
             <img src="intra/images/bemvindo-intra.jpg" alt="Bem-vindo à Intranet" style="width: 60%; max-width: 520px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
@@ -363,7 +328,7 @@ echo "<p>✅ módulo_usuarios.php incluído com sucesso.</p>";
 
 
 
-        <p><a href="https://www.canoas.rs.gov.br/" target="_blank" style="color: #006699; font-weight: bold;">Acesse também o portal oficial de Canoas</a></p>
+        <p><a href="https://www.asaudem.org/home/" target="_blank" style="color: #006699; font-weight: bold;">Acesse também o portal oficial de Canoas</a></p>
 
     </div>
 
