@@ -202,21 +202,6 @@ echo "<p>✅ módulo_usuarios.php incluído com sucesso.</p>";
 		</div>
 
 		<div id="area-principal">
-
-		<?php
-			include 'conexao.php';
-			$result = $conn->query("SELECT * FROM links");
-
-			while ($row = $result->fetch_assoc()) {
-  				echo '<div class="link-card">';
-  				echo '<img src="' . $row['imagem'] . '" alt="' . $row['titulo'] . '" style="width:100px;">';
-  				echo '<h3>' . $row['titulo'] . '</h3>';
-  				echo '<a href="' . $row['url'] . '" target="_blank">Acessar</a>';
-  				echo '</div>';
-			}
-			?>
-
-
 			<?php 
 
 			//Include abaixo serve para adicionar avisos à Intranet
@@ -2308,6 +2293,15 @@ case "moderar_ramal":
 				funcaoAtalhos($mysqli);
 
 				break;
+				$dados = json_decode(file_get_contents('api/links/listar.php'), true);
+						foreach ($dados as $link) {
+  						echo '<div class="link-card">';
+  						echo '<img src="' . $link['imagem'] . '" alt="' . $link['titulo'] . '">';
+  						echo '<h3>' . $link['titulo'] . '</h3>';
+  						echo '<a href="' . $link['url'] . '" target="_blank">Acessar</a>';
+  						echo '</div>';
+				}
+
 
 			}
 
